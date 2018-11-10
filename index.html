@@ -1,0 +1,94 @@
+
+<!doctype html>
+<html>
+<head>
+  <title>Network | Images</title>
+
+  <style type="text/css">
+    #mynetwork {
+      width: 600px;
+      height: 600px;
+      border: 1px solid lightgray;
+    }
+  </style>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css" />
+
+  <script type="text/javascript">
+    var nodes = null;
+    var edges = null;
+    var network = null;
+
+    var DIR = '/assets/';
+    var EDGE_LENGTH_MAIN = 150;
+    var EDGE_LENGTH_SUB = 50;
+    
+    const IMAGES = {
+      NETWORK_PIPE : "https://cdn.glitch.com/85fd7302-cb41-40f7-9123-e4f0387a19a6%2FNetwork-Pipe-icon.png?1541818774600",
+      MY_COMPUTER: "https://cdn.glitch.com/85fd7302-cb41-40f7-9123-e4f0387a19a6%2FHardware-My-Computer-3-icon.png?1541818774467",
+      PRINTER: "https://cdn.glitch.com/85fd7302-cb41-40f7-9123-e4f0387a19a6%2FHardware-Printer-Blue-icon.png?1541818774483",
+      LAPTOP: "https://cdn.glitch.com/85fd7302-cb41-40f7-9123-e4f0387a19a6%2FHardware-Laptop-1-icon.png?1541818774495",
+      DRIVE: "https://cdn.glitch.com/85fd7302-cb41-40f7-9123-e4f0387a19a6%2FNetwork-Drive-icon.png?1541818774534",
+      FIREWALL: "https://cdn.glitch.com/85fd7302-cb41-40f7-9123-e4f0387a19a6%2FSystem-Firewall-2-icon.png?1541818774515",
+      PDA: "https://cdn.glitch.com/85fd7302-cb41-40f7-9123-e4f0387a19a6%2FHardware-My-PDA-02-icon.png?1541818774552"
+      
+    }
+
+    // Called when the Visualization API is loaded.
+    function draw() {
+      // Create a data table with nodes.
+      nodes = [];
+
+      // Create a data table with links.
+      edges = [];
+
+      nodes.push({id: 1, label: 'Main', image: IMAGES.NETWORK_PIPE, shape: 'image'});
+      nodes.push({id: 2, label: 'Office', image: IMAGES.NETWORK_PIPE, shape: 'image'});
+      nodes.push({id: 3, label: 'Wireless', image: IMAGES.NETWORK_PIPE, shape: 'image'});
+      edges.push({from: 1, to: 2, length: EDGE_LENGTH_MAIN});
+      edges.push({from: 1, to: 3, length: EDGE_LENGTH_MAIN});
+
+      for (var i = 4; i <= 7; i++) {
+        nodes.push({id: i, label: 'Computer', image: IMAGES.MY_COMPUTER, shape: 'image'});
+        edges.push({from: 2, to: i, length: EDGE_LENGTH_SUB});
+      }
+
+      nodes.push({id: 101, label: 'Printer', image: IMAGES.PRINTER, shape: 'image'});
+      edges.push({from: 2, to: 101, length: EDGE_LENGTH_SUB});
+
+      nodes.push({id: 102, label: 'Laptop', image: IMAGES.LAPTOP, shape: 'image'});
+      edges.push({from: 3, to: 102, length: EDGE_LENGTH_SUB});
+
+      nodes.push({id: 103, label: 'network drive', image: IMAGES.DRIVE, shape: 'image'});
+      edges.push({from: 1, to: 103, length: EDGE_LENGTH_SUB});
+
+      nodes.push({id: 104, label: 'Internet', image: IMAGES.FIREWALL, shape: 'image'});
+      edges.push({from: 1, to: 104, length: EDGE_LENGTH_SUB});
+
+      for (var i = 200; i <= 201; i++ ) {
+        nodes.push({id: i, label: 'Smartphone', image: IMAGES.PDA, shape: 'image'});
+        edges.push({from: 3, to: i, length: EDGE_LENGTH_SUB});
+      }
+
+      // create a network
+      var container = document.getElementById('mynetwork');
+      var data = {
+        nodes: nodes,
+        edges: edges
+      };
+      var options = {};
+      network = new vis.Network(container, data, options);
+    }
+  </script>
+  
+
+<body onload="draw()">
+
+<p>
+  Display nodes as images.
+</p>
+<div id="mynetwork"></div>
+
+</body>
+</html>
