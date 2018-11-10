@@ -13,8 +13,8 @@ const IMAGES = {
     LAPTOP: "https://cdn.glitch.com/85fd7302-cb41-40f7-9123-e4f0387a19a6%2FHardware-Laptop-1-icon.png?1541818774495",
     DRIVE: "https://cdn.glitch.com/85fd7302-cb41-40f7-9123-e4f0387a19a6%2FNetwork-Drive-icon.png?1541818774534",
     FIREWALL: "https://cdn.glitch.com/85fd7302-cb41-40f7-9123-e4f0387a19a6%2FSystem-Firewall-2-icon.png?1541818774515",
-    PDA: "https://cdn.glitch.com/85fd7302-cb41-40f7-9123-e4f0387a19a6%2FHardware-My-PDA-02-icon.png?1541818774552"
-
+    PDA: "https://cdn.glitch.com/85fd7302-cb41-40f7-9123-e4f0387a19a6%2FHardware-My-PDA-02-icon.png?1541818774552",
+    NODE: "https://cdn.glitch.com/85fd7302-cb41-40f7-9123-e4f0387a19a6%2Fcircle.svg?1541831910871"
 };
 
 // Called when the Visualization API is loaded.
